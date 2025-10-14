@@ -21,8 +21,8 @@ export class Map {
   
   render() {
     
-    const roadTileContext = new GraphicsContext().rect(Tile_Size, Tile_Size, Tile_Size, Tile_Size).fill("brown");
-    const forestTileContext = new GraphicsContext().rect(Tile_Size, Tile_Size, Tile_Size, Tile_Size).fill("green");
+    const roadTileContext = new GraphicsContext().rect(0, 0, Tile_Size, Tile_Size).fill("brown");
+    const forestTileContext = new GraphicsContext().rect(0, 0, Tile_Size, Tile_Size).fill("green");
     
 
     for (let y = 0; y < this.grid.length; y++) {
