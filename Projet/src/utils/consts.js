@@ -18,6 +18,13 @@ export const UI = {
     textPrimary: 0xffffff,
     textSecondary: 0xd0ffd6,
   },
+  statColors: {
+    pv: 0xff4d4f,      // red
+    attack: 0xffa940,  // orange
+    armor: 0xbfbfbf,   // gray
+    speed: 0x40a9ff,   // blue
+    hits: 0xb37feb,    // purple
+  },
 };
 
 export const API = {

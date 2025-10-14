@@ -21,11 +21,11 @@ export default class PlayerStatsUI extends Container {
         this.addChild(this.title);
 
         this.lines = {
-            pv: new Text({ text: "", style: { fill: UI_CONSTS.colors.textPrimary, fontSize: 14 } }),
-            attack: new Text({ text: "", style: { fill: UI_CONSTS.colors.textPrimary, fontSize: 14 } }),
-            armor: new Text({ text: "", style: { fill: UI_CONSTS.colors.textPrimary, fontSize: 14 } }),
-            speed: new Text({ text: "", style: { fill: UI_CONSTS.colors.textPrimary, fontSize: 14 } }),
-            hits: new Text({ text: "", style: { fill: UI_CONSTS.colors.textPrimary, fontSize: 14 } }),
+            pv: new Text({ text: "", style: { fill: UI_CONSTS.statColors.pv, fontSize: 14 } }),
+            attack: new Text({ text: "", style: { fill: UI_CONSTS.statColors.attack, fontSize: 14 } }),
+            armor: new Text({ text: "", style: { fill: UI_CONSTS.statColors.armor, fontSize: 14 } }),
+            speed: new Text({ text: "", style: { fill: UI_CONSTS.statColors.speed, fontSize: 14 } }),
+            hits: new Text({ text: "", style: { fill: UI_CONSTS.statColors.hits, fontSize: 14 } }),
         };
 
         this.lines.pv.x = 10; this.lines.pv.y = 34;

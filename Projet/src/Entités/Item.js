@@ -1,3 +1,6 @@
+import axios from "axios";
+import { API } from "../utils/consts.js";
+
 export default class Item {
     constructor({ name, meta_name, type, modifiers }) {
         this.name = name || "Item";
@@ -39,5 +42,23 @@ export default class Item {
                 stat.current = Math.min(stat.current, stat.max);
             }
         }
+    }
+
+    static async getItems() {
+        const normalize = (v) => (v == null ? 0 : v);
+        const { data } = await axios.get(API.objects);
+        if (!Array.isArray(data)) return [];
+        return data.map((obj) => new Item({
+            name: obj.name,
+            meta_name: obj.meta_name,
+            type: obj.type,
+            modifiers: {
+                pv: normalize(obj.hp),
+                attack: normalize(obj.atk),
+                armor: normalize(obj.armor),
+                speed: normalize(obj.speed),
+                hits: normalize(obj.hits),
+            },
+        }));
     }
 }
