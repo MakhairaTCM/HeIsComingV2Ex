@@ -1,6 +1,4 @@
-import {TILE_SIZE, TILE_TYPES, UI_WIDTH, UI_HEIGHT, GAME_WIDTH, GAME_HEIGHT } from "../utils/consts.js";
-
-
+import {TILE_SIZE, TILE_TYPES, GAME_HEIGHT, GAME_WIDTH} from "../utils/consts.js";
 import { GraphicsContext, Graphics, Container } from 'pixi.js';
 import { getMap } from "../utils/api.js";
 
@@ -10,10 +8,13 @@ export default class Map {
     this.container = new Container();
     this.roadTile = new GraphicsContext().rect(0, 0, TILE_SIZE, TILE_SIZE).fill("brown");
     this.forestTile = new GraphicsContext().rect(0, 0, TILE_SIZE, TILE_SIZE).fill("green");
+    this.road = [];
+    this.items = []; 
   }
 
   async load(){
     this.grid = await getMap();
+    this.takeroadposition();
   }
 
   render(){
@@ -44,6 +45,21 @@ export default class Map {
     this.container.y -= direction.y * TILE_SIZE;
   }
 
+  takeroadposition(){
+    console.log(this.grid); 
+     for (let y = 0; y < this.grid.length; y ++ ){
+      for (let x = 0; x < this.grid[y].length; x ++){
+        if (this.grid[y][x] == 1 ){
+          this.road.push([x, y]); 
+        }
+      }
+    }
+  }
 
+  roadrandom(){
+    const r = Math.floor(Math.random() * this.road.length); 
+    console.log(this.road.length);
+    return this.road.splice(r, 1)[0]; 
+  }
 
 }

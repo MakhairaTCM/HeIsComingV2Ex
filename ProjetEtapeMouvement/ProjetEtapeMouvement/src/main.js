@@ -3,9 +3,10 @@ import Map from './world/Map';
 import Player from './entities/Player';
 import UI from './ui/UI';
 import {MAP_SIZE, UI_WIDTH, UI_HEIGHT, GAME_WIDTH, GAME_HEIGHT, GAME_X, GAME_Y} from './utils/consts';
-
-
 import InputManager from './core/InputManager';
+import { getItems } from "./utils/itemFactory";
+
+// import InputManager from './core/InputManager';
 (async () => {
   const app = new Application();
   await app.init({ background: "#1099bb", resizeTo: window });
@@ -48,13 +49,21 @@ import InputManager from './core/InputManager';
   await map.load();
   map.render();
 
-  window.addEventListener("resize", () => {
-    updateSizes();
-    console.log(GAME_WIDTH, GAME_HEIGHT);
-  });
+  // window.addEventListener("resize", () => {
+  //   updateSizes();
+  //   console.log(GAME_WIDTH, GAME_HEIGHT);
+  // });
 
  // Boucle pour l'update des stats
   app.ticker.add(() => {
     ui.updateStats();
   });
+
+
+  const items = await getItems(map); 
+  console.log(items);
+
+  for (let item of items){
+    item.render(map.container);
+  }
 })();
