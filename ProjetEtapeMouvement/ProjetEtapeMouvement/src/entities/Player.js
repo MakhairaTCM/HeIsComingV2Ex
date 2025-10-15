@@ -1,5 +1,7 @@
 import { GraphicsContext, Graphics, Container } from 'pixi.js';
-import {TILE_SIZE, GAME_X, GAME_Y, GAME_WIDTH, GAME_HEIGHT} from '../utils/consts';
+import {TILE_SIZE, UI_WIDTH, UI_HEIGHT, GAME_WIDTH, GAME_HEIGHT } from '../utils/consts';
+
+
 
 export default class Player{
   constructor(position){

@@ -1,9 +1,7 @@
 export const TILE_SIZE = 50;
-
 export const MAP_SIZE = 15;
 
 export const API_URL = "https://www.mmi.alarmitou.fr/api";
-
 export const IMG_URL = "https://www.mmi.alarmitou.fr/imgs";
 
 export const TILE_TYPES = {
@@ -11,17 +9,26 @@ export const TILE_TYPES = {
   ROAD:1
 }
 
-export const GAME_X = 0;
 
-export const GAME_Y = 0;
+export const MARGIN = 20;
 
-export const GAME_WIDTH = window.innerWidth - TILE_SIZE*4;
+// UI Constantes
 
-export const GAME_HEIGHT = window.innerHeight - TILE_SIZE * 4;
+export const UI_WIDTH = 350; 
+export const UI_HEIGHT = window.innerHeight;
+export const STATS_HEIGHT= UI_HEIGHT*30/100;
+export const INVENTORY_HEIGHT= UI_HEIGHT*70/100;
 
-export const MIDDLE_OF_GRID = Math.floor(MAP_SIZE / 2);
+// Console Constantes
+export const CONSOLE_HEIGHT = 200;
+export const CONSOLE_WIDTH = UI_WIDTH;
 
-export const BASE_PLAYER_POSITION = {
-  X:MIDDLE_OF_GRID,
-  Y:MIDDLE_OF_GRID
-}
+// GameContainer Constantes 
+export const GAME_X = UI_WIDTH + MARGIN*2;
+// export const GAME_Y = CONSOLE_HEIGHT + MARGIN;
+export const GAME_Y = MARGIN;
+export const GAME_WIDTH = window.innerWidth - UI_WIDTH - MARGIN*3;
+export const GAME_HEIGHT = window.innerHeight - MARGIN*2;
+
+
+

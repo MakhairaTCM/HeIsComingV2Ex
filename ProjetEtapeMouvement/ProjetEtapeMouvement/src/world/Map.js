@@ -1,4 +1,6 @@
-import {TILE_SIZE, TILE_TYPES, GAME_HEIGHT, GAME_WIDTH} from "../utils/consts.js";
+import {TILE_SIZE, TILE_TYPES, UI_WIDTH, UI_HEIGHT, GAME_WIDTH, GAME_HEIGHT } from "../utils/consts.js";
+
+
 import { GraphicsContext, Graphics, Container } from 'pixi.js';
 import { getMap } from "../utils/api.js";
 
