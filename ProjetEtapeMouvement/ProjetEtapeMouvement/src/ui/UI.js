@@ -1,5 +1,5 @@
 import { Container, Text, Graphics } from "pixi.js";
-import { UI_WIDTH, MARGIN, STATS_HEIGHT, INVENTORY_HEIGHT } from "../utils/consts.js";
+import { UI_WIDTH, MARGIN, STATS_HEIGHT, INVENTORY_HEIGHT, START_X, START_Y, SPACING, ITEMS_PER_ROW } from "../utils/consts.js";
 
 export default class UI {
   constructor(player) {
@@ -78,29 +78,18 @@ export default class UI {
     this.texts.hits.text = `Hits: ${this.player.hits}/${this.player.hitsMax}`;
   }
 
-  /** 🧱 Met à jour visuellement les objets dans la section INVENTORY */
   updateInventoryUI() {
-    // Supprimer les anciens sprites sauf le fond et le titre
-    const baseChildren = 2; // fond + titre
-    while (this.inventoryContainer.children.length > baseChildren) {
-      this.inventoryContainer.removeChildAt(baseChildren);
+    while (this.inventoryContainer.children.length > 2) {
+      this.inventoryContainer.removeChildAt(2);
     }
-
     const items = this.player.inventory.getAll();
-
-    const startX = 10;
-    const startY = 40;
-    const spacing = 40;
-    const itemsPerRow = 5;
 
     items.forEach((item, index) => {
       if (!item.sprite) return;
-
-      // copie simple du sprite original
       const spriteCopy = new Graphics(item.sprite.context);
       spriteCopy.scale.set(0.5);
-      spriteCopy.x = startX + (index % itemsPerRow) * spacing;
-      spriteCopy.y = startY + Math.floor(index / itemsPerRow) * spacing;
+      spriteCopy.x = START_X + (index % ITEMS_PER_ROW) * SPACING;
+      spriteCopy.y = START_Y + Math.floor(index / ITEMS_PER_ROW) * SPACING;
       this.inventoryContainer.addChild(spriteCopy);
     });
   }

@@ -26,5 +26,9 @@ export const GAME_Y = MARGIN;
 export const GAME_WIDTH = window.innerWidth - UI_WIDTH - MARGIN*3;
 export const GAME_HEIGHT = window.innerHeight - MARGIN*2;
 
+export const START_X = MARGIN;
+export const START_Y = MARGIN*2;
+export const SPACING = MARGIN*2;
+export const ITEMS_PER_ROW = 5;
 
 

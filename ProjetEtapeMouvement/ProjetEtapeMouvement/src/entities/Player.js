@@ -18,7 +18,6 @@ export default class Player {
     this.position = position;
     this.inventory = new Inventory();
 
-    // Callback optionnelle pour notifier l'UI
     this.onItemPickup = null;
   }
 
@@ -27,7 +26,7 @@ export default class Player {
     this.sprite = new Graphics(graphic);
     this.sprite.x = GAME_WIDTH / 2 - TILE_SIZE / 2;
     this.sprite.y = GAME_HEIGHT / 2 - TILE_SIZE / 2;
-    container.addChild(this.sprite);
+    container.addChild(this.sprite);  
   }
 
   move(direction) {
@@ -35,7 +34,6 @@ export default class Player {
     this.position.y += direction.y;
   }
 
-  /** Vérifie si le joueur passe sur un objet et le ramasse automatiquement */
   checkPickup(items) {
     const item = items.find(
       i =>
@@ -59,7 +57,6 @@ export default class Player {
         HITS: `${this.hits}/${this.hitsMax}`,
       });
 
-      // 🔔 Notifie l’UI (si un callback a été défini)
       if (this.onItemPickup) {
         this.onItemPickup(item);
       }

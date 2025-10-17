@@ -53,7 +53,7 @@ import { getItems, getMonsters } from "./utils/factory";
   //   console.log(GAME_WIDTH, GAME_HEIGHT);
   // });
 
- // Boucle pour l'update des stats
+ 
   app.ticker.add(() => {
     ui.updateStats();
   });
