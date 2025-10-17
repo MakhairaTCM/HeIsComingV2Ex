@@ -55,15 +55,17 @@ import { getItems, getMonsters } from "./utils/factory";
   for (let item of items){
     item.render(map.container);
   }
-  app.ticker.add(() => {
-    ui.updateStats();
-    player.update(items);
-  });
-
   const enemies = await getMonsters(map); 
   console.log(enemies); 
-  for (let enemie of enemies){
-    enemie.render(map.container);
+
+  for (const enemy of enemies) {
+    enemy.render(map.container);
   }
+  
+  app.ticker.add(() => {
+    ui.updateStats();
+    player.update(items, enemies);
+  });
+
 
 })();
