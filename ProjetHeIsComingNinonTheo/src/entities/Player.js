@@ -1,5 +1,5 @@
 import { GraphicsContext, Graphics } from 'pixi.js';
-import { TILE_SIZE, GAME_WIDTH, GAME_HEIGHT } from '../utils/consts';
+import { TILE_SIZE, GAME_WIDTH, GAME_HEIGHT } from '../utils/consts.js';
 import Inventory from '../core/inventory.js';
 import { detectItemCollision, detectEnemyCollision } from '../utils/collision.js';
 import CombatManager from '../core/CombatManager.js';
