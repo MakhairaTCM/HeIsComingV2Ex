@@ -4,7 +4,7 @@ import Player from './entities/Player';
 import UI from './ui/UI';
 import {MAP_SIZE, UI_WIDTH, UI_HEIGHT, GAME_WIDTH, GAME_HEIGHT, GAME_X, GAME_Y} from './utils/consts';
 import InputManager from './core/InputManager';
-import { getItems } from "./utils/itemFactory";
+import { getItems, getMonsters } from "./utils/factory";
 
 (async () => {
   const app = new Application();
@@ -70,6 +70,10 @@ import { getItems } from "./utils/itemFactory";
     player.checkPickup(items);
   });
 
-
+  const enemies = await getMonsters(map); 
+  console.log(enemies); 
+  for (let enemie of enemies){
+    enemie.render(map.container);
+  }
 
 })();
