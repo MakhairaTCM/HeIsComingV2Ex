@@ -1,38 +1,29 @@
-import { getItems } from "../utils/itemFactory.js";
-import { Application, Container, Graphics, GraphicsContext, Sprite, Texture } from "pixi.js";
-import {TILE_SIZE} from "../utils/consts.js";
+import { TILE_SIZE } from "../utils/consts.js";
+import { GraphicsContext, Graphics } from "pixi.js";
 
-
-export default class Items{
-  constructor(armor, atk, hits, hp, speed, type, x, y){
-    this.hp = hp;
-    this.atk = atk;
+export default class Items {
+  constructor(armor, atk, hits, hp, speed, type, x, y) {
     this.armor = armor;
+    this.atk = atk;
     this.hits = hits;
-    this.speed = speed; 
+    this.hp = hp;
+    this.speed = speed;
     this.type = type;
-    this.x = x;
-    this.y = y;
-
+    this.position = [x, y];
   }
 
-  render(container){
-    console.log("coucou c'est la méthode render de Items"); 
-    const graphic = new GraphicsContext()
-          .rect(0, 0, TILE_SIZE, TILE_SIZE)
-          .fill("yellow");
+  render(container) {
+    const color = 0xffcc00;
+    const graphic = new GraphicsContext().rect(0, 0, TILE_SIZE, TILE_SIZE).fill(color);
     this.sprite = new Graphics(graphic);
-    this.sprite.x = this.x * TILE_SIZE;
-    this.sprite.y = this.y * TILE_SIZE;
-    console.log(this.x + " " + this.y); 
+    this.sprite.x = this.position[0] * TILE_SIZE;
+    this.sprite.y = this.position[1] * TILE_SIZE;
     container.addChild(this.sprite);
   }
 
-  attach(){
-    console.log(getItems()); 
-  }
-
-  dettach(){
-
+  hide() {
+    if (this.sprite && this.sprite.parent) {
+      this.sprite.parent.removeChild(this.sprite);
+    }
   }
 }

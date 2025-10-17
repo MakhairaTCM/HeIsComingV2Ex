@@ -1,10 +1,6 @@
 import { getObjects } from "./api.js";
 import Items from "../world/items.js";
 
-import Map from "../world/Map.js";
-
-
-
 export async function getItems(map){
   let listItems = []
   listItems = await getObjects();

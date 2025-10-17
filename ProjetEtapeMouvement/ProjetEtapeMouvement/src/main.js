@@ -6,7 +6,6 @@ import {MAP_SIZE, UI_WIDTH, UI_HEIGHT, GAME_WIDTH, GAME_HEIGHT, GAME_X, GAME_Y} 
 import InputManager from './core/InputManager';
 import { getItems } from "./utils/itemFactory";
 
-// import InputManager from './core/InputManager';
 (async () => {
   const app = new Application();
   await app.init({ background: "#1099bb", resizeTo: window });
@@ -66,4 +65,11 @@ import { getItems } from "./utils/itemFactory";
   for (let item of items){
     item.render(map.container);
   }
+  app.ticker.add(() => {
+    ui.updateStats();
+    player.checkPickup(items);
+  });
+
+
+
 })();
