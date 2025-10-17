@@ -1,6 +1,7 @@
 import { GraphicsContext, Graphics } from 'pixi.js';
 import { TILE_SIZE, GAME_WIDTH, GAME_HEIGHT } from '../utils/consts';
 import Inventory from '../core/inventory.js';
+import { detectItemCollision } from '../utils/collision.js';
 
 export default class Player {
   constructor(position) {
@@ -17,12 +18,13 @@ export default class Player {
     this.name = "Joueur";
     this.position = position;
     this.inventory = new Inventory();
-
     this.onItemPickup = null;
   }
 
   render(container) {
-    const graphic = new GraphicsContext().rect(0, 0, TILE_SIZE, TILE_SIZE).fill(0x6666ff);
+    const graphic = new GraphicsContext()
+      .rect(0, 0, TILE_SIZE, TILE_SIZE)
+      .fill(0x6666ff);
     this.sprite = new Graphics(graphic);
     this.sprite.x = GAME_WIDTH / 2 - TILE_SIZE / 2;
     this.sprite.y = GAME_HEIGHT / 2 - TILE_SIZE / 2;
@@ -34,16 +36,15 @@ export default class Player {
     this.position.y += direction.y;
   }
 
-  checkPickup(items) {
-    const item = items.find(
-      i =>
-        i &&
-        i.position &&
-        i.position[0] === this.position.x &&
-        i.position[1] === this.position.y
-    );
+  update(items) {
+    const collidedItem = detectItemCollision(this, items);
+    if (collidedItem) {
+      this.pickupItem(collidedItem);
+    }
+  }
 
-    if (item && !this.inventory.has(item)) {
+  pickupItem(item) {
+    if (!this.inventory.has(item)) {
       this.inventory.add(item);
       item.hide();
       this.applyItemStats(item);
@@ -57,9 +58,7 @@ export default class Player {
         HITS: `${this.hits}/${this.hitsMax}`,
       });
 
-      if (this.onItemPickup) {
-        this.onItemPickup(item);
-      }
+      if (this.onItemPickup) this.onItemPickup(item);
     }
   }
 

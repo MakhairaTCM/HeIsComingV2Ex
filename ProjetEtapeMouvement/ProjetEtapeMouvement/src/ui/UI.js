@@ -9,8 +9,7 @@ export default class UI {
 
     this.createStatsSection();
     this.createInventorySection();
-
-    // 🔔 lie la mise à jour automatique à l'événement du joueur
+    
     this.player.onItemPickup = (item) => this.updateInventoryUI();
   }
 

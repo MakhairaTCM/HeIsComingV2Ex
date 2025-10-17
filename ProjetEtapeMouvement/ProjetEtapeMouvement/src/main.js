@@ -48,16 +48,6 @@ import { getItems, getMonsters } from "./utils/factory";
   await map.load();
   map.render();
 
-  // window.addEventListener("resize", () => {
-  //   updateSizes();
-  //   console.log(GAME_WIDTH, GAME_HEIGHT);
-  // });
-
- 
-  app.ticker.add(() => {
-    ui.updateStats();
-  });
-
 
   const items = await getItems(map); 
   console.log(items);
@@ -67,7 +57,7 @@ import { getItems, getMonsters } from "./utils/factory";
   }
   app.ticker.add(() => {
     ui.updateStats();
-    player.checkPickup(items);
+    player.update(items);
   });
 
   const enemies = await getMonsters(map); 
