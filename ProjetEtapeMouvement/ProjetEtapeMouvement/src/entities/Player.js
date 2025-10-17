@@ -55,7 +55,7 @@ export default class Player {
       item.hide?.();
       this.applyItemStats(item);
 
-      console.log(` ${this.name} ramasse ${item.type}`);
+      console.log(`${this.name} ramasse ${item.type}`);
       if (this.onItemPickup) this.onItemPickup(item);
     }
   }
