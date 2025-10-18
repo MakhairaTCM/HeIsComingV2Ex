@@ -37,17 +37,24 @@ export default class Player {
     this.position.y += direction.y;
   }
 
-  update(items, enemies) {
+  update(items, enemies, chests, container) {
     const collidedItem = detectCollision(this, items);
     if (collidedItem) {
-      this.pickupItem(collidedItem);
+        this.pickupItem(collidedItem);
     }
 
     const collidedEnemy = detectCollision(this, enemies);
     if (collidedEnemy) {
-      this.startCombat(collidedEnemy);
+        this.startCombat(collidedEnemy);
     }
-  }
+
+    const collidedChest = detectCollision(this, chests);
+    if (collidedChest) {
+        collidedChest.open((selectedItem) => {
+            this.pickupItem(selectedItem);
+        })
+    }
+}
 
   pickupItem(item) {
     if (!this.inventory.has(item)) {

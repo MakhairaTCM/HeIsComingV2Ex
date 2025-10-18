@@ -4,7 +4,7 @@ import Player from './entities/Player';
 import UI from './ui/UI';
 import {MAP_SIZE, GAME_WIDTH, GAME_HEIGHT, GAME_X, GAME_Y} from './utils/consts';
 import InputManager from './core/InputManager';
-import { getItems, getMonsters } from "./utils/factory";
+import { getChest, getItems, getMonsters } from "./utils/factory";
 
 (async () => {
   const app = new Application();
@@ -59,11 +59,18 @@ import { getItems, getMonsters } from "./utils/factory";
   for (const enemy of enemies) {
     enemy.render(map.container);
   }
-  
+  const treasures = await getChest(map);
+  for (let treasure of treasures){
+    treasure.render(map.container); 
+    
+  } 
+
   app.ticker.add(() => {
     ui.updateStats();
-    player.update(items, enemies);
+    player.update(items, enemies, treasures, map.container);
   });
 
 
+  
+  
 })();

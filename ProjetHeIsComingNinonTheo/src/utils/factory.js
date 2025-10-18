@@ -1,6 +1,9 @@
-import { getEnemies, getObjects } from "./api.js";
+import { getEnemies, getObjects, getTreasures} from "./api.js";
 import Items from "../world/items.js";
 import Enemies from "../entities/Enemies.js";
+import Treasures from "../world/treasures.js";
+import {TREASURES_NUMBER, ITEMINTREASURES} from './consts.js';
+
 
 
 export async function getItems(map){
@@ -50,3 +53,35 @@ export async function getMonsters(map) {
   }
   return monsters; 
 }
+
+export async function getChest(map) {
+  let listTreasures = [];
+  listTreasures = await getTreasures(TREASURES_NUMBER, ITEMINTREASURES); 
+  
+  const treasures = []; 
+
+  for (const treasure of listTreasures) {
+    const position_random_treasure = map.roadrandom(); 
+    
+    const listItems = [];
+
+  for (const item of treasure) {
+    const itemObj = new Items(
+      item.armor,
+      item.atk,
+      item.hits,
+      item.hp,
+      item.speed,
+      item.type,
+      item.meta_name,
+      0, 0
+    );
+    listItems.push(itemObj);
+
+  }
+
+  const treasureObj = new Treasures(listItems, position_random_treasure[0], position_random_treasure[1]); 
+  treasures.push(treasureObj);
+}
+    return treasures; 
+  } 

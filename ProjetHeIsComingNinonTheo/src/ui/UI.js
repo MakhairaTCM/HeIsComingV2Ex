@@ -9,6 +9,7 @@ export default class UI {
 
     this.createStatsSection();
     this.createInventorySection();
+
     
     this.player.onItemPickup = (item) => this.updateInventoryUI();
   }
@@ -98,4 +99,6 @@ export default class UI {
   getContainer() {
     return this.container;
   }
+
+
 }

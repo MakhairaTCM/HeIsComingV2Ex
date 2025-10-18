@@ -1,5 +1,5 @@
 export const TILE_SIZE = 50;
-export const MAP_SIZE = 15;
+export const MAP_SIZE = 45;
 
 export const API_URL = "https://www.mmi.alarmitou.fr/api";
 export const IMG_URL = "https://www.mmi.alarmitou.fr/imgs";
@@ -32,3 +32,5 @@ export const SPACING = MARGIN*2;
 export const ITEMS_PER_ROW = 5;
 
 
+export const TREASURES_NUMBER  = 3; 
+export const ITEMINTREASURES  = 3; 
