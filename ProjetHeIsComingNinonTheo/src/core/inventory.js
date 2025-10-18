@@ -1,4 +1,4 @@
-// inventory.js
+
 export default class Inventory {
   constructor() {
     this.items = [];

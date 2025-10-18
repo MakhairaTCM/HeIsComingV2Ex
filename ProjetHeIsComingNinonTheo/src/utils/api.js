@@ -13,6 +13,5 @@ export async function getObjects(){
 
 export async function getEnemies(){
   const response = await axios.get(API_URL+"/enemies"); 
-  console.log(response.data); 
   return response.data; 
 }

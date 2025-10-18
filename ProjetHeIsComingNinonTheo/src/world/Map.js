@@ -45,8 +45,7 @@ export default class Map {
     this.container.y -= direction.y * TILE_SIZE;
   }
 
-  takeroadposition(){
-    console.log(this.grid); 
+  takeroadposition(){ 
      for (let y = 0; y < this.grid.length; y ++ ){
       for (let x = 0; x < this.grid[y].length; x ++){
         if (this.grid[y][x] == 1 ){
@@ -58,7 +57,6 @@ export default class Map {
 
   roadrandom(){
     const r = Math.floor(Math.random() * this.road.length); 
-    console.log(this.road.length);
     return this.road.splice(r, 1)[0]; 
   }
 

@@ -1,5 +1,5 @@
-import { Container, Text, Graphics } from "pixi.js";
-import { UI_WIDTH, MARGIN, STATS_HEIGHT, INVENTORY_HEIGHT, START_X, START_Y, SPACING, ITEMS_PER_ROW } from "../utils/consts.js";
+import { Container, Text, Graphics, Sprite } from "pixi.js";
+import { UI_WIDTH, MARGIN, STATS_HEIGHT, INVENTORY_HEIGHT, START_X, START_Y, SPACING, ITEMS_PER_ROW, TILE_SIZE } from "../utils/consts.js";
 
 export default class UI {
   constructor(player) {
@@ -85,10 +85,12 @@ export default class UI {
 
     items.forEach((item, index) => {
       if (!item.sprite) return;
-      const spriteCopy = new Graphics(item.sprite.context);
+      const spriteCopy = new Sprite(item.sprite.texture);
       spriteCopy.scale.set(0.5);
       spriteCopy.x = START_X + (index % ITEMS_PER_ROW) * SPACING;
       spriteCopy.y = START_Y + Math.floor(index / ITEMS_PER_ROW) * SPACING;
+      spriteCopy.width = TILE_SIZE; 
+      spriteCopy.height = TILE_SIZE; 
       this.inventoryContainer.addChild(spriteCopy);
     });
   }

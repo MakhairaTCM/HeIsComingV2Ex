@@ -2,7 +2,7 @@ import { Application, Container, Graphics, GraphicsContext, Sprite, Texture } fr
 import Map from './world/Map';
 import Player from './entities/Player';
 import UI from './ui/UI';
-import {MAP_SIZE, UI_WIDTH, UI_HEIGHT, GAME_WIDTH, GAME_HEIGHT, GAME_X, GAME_Y} from './utils/consts';
+import {MAP_SIZE, GAME_WIDTH, GAME_HEIGHT, GAME_X, GAME_Y} from './utils/consts';
 import InputManager from './core/InputManager';
 import { getItems, getMonsters } from "./utils/factory";
 
@@ -50,13 +50,11 @@ import { getItems, getMonsters } from "./utils/factory";
 
 
   const items = await getItems(map); 
-  console.log(items);
 
   for (let item of items){
     item.render(map.container);
   }
   const enemies = await getMonsters(map); 
-  console.log(enemies); 
 
   for (const enemy of enemies) {
     enemy.render(map.container);

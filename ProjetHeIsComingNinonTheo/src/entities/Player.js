@@ -1,7 +1,7 @@
 import { GraphicsContext, Graphics } from 'pixi.js';
 import { TILE_SIZE, GAME_WIDTH, GAME_HEIGHT } from '../utils/consts.js';
-import Inventory from '../core/inventory.js';
-import { detectItemCollision, detectEnemyCollision } from '../utils/collision.js';
+import Inventory from '../core/Inventory.js';
+import { detectCollision } from '../utils/collision.js';
 import CombatManager from '../core/CombatManager.js';
 
 export default class Player {
@@ -38,12 +38,12 @@ export default class Player {
   }
 
   update(items, enemies) {
-    const collidedItem = detectItemCollision(this, items);
+    const collidedItem = detectCollision(this, items);
     if (collidedItem) {
       this.pickupItem(collidedItem);
     }
 
-    const collidedEnemy = detectEnemyCollision(this, enemies);
+    const collidedEnemy = detectCollision(this, enemies);
     if (collidedEnemy) {
       this.startCombat(collidedEnemy);
     }
@@ -55,7 +55,7 @@ export default class Player {
       item.hide?.();
       this.applyItemStats(item);
 
-      console.log(`${this.name} ramasse ${item.type}`);
+      console.log(`${this.name} ramasse ${item.meta_name}`);
       if (this.onItemPickup) this.onItemPickup(item);
     }
   }
@@ -66,7 +66,7 @@ export default class Player {
     if (enemy.inCombat) return;
     enemy.inCombat = true;
 
-    console.log(`Combat déclenché contre ${enemy.type}!`);
+    console.log(`Combat déclenché contre ${enemy.meta_name}!`);
     const combat = new CombatManager(this, enemy);
     const result = combat.fight();
 

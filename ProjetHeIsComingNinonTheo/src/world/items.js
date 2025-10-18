@@ -1,23 +1,25 @@
-import { TILE_SIZE } from "../utils/consts.js";
-import { GraphicsContext, Graphics } from "pixi.js";
+import { TILE_SIZE, IMG_URL} from "../utils/consts.js";
+import {Sprite, Assets} from "pixi.js";
 
 export default class Items {
-  constructor(armor, atk, hits, hp, speed, type, x, y) {
+  constructor(armor, atk, hits, hp, speed, type, meta_name, x, y) {
     this.armor = armor;
     this.atk = atk;
     this.hits = hits;
     this.hp = hp;
     this.speed = speed;
     this.type = type;
+    this.meta_name = meta_name, 
     this.position = [x, y];
   }
 
-  render(container) {
-    const color = 0xffcc00;
-    const graphic = new GraphicsContext().rect(0, 0, TILE_SIZE, TILE_SIZE).fill(color);
-    this.sprite = new Graphics(graphic);
+  async render(container) {
+    const texture = await Assets.load(IMG_URL+`/${this.meta_name}.png`);
+    this.sprite = new Sprite(texture);
     this.sprite.x = this.position[0] * TILE_SIZE;
     this.sprite.y = this.position[1] * TILE_SIZE;
+    this.sprite.width = TILE_SIZE; 
+    this.sprite.height = TILE_SIZE; 
     container.addChild(this.sprite);
   }
 

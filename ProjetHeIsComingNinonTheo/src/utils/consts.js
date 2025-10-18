@@ -10,7 +10,7 @@ export const TILE_TYPES = {
 }
 
 
-export const MARGIN = 20;
+export const MARGIN = 30;
 
 
 export const UI_WIDTH = 350; 
