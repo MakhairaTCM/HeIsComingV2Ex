@@ -67,7 +67,7 @@ import { getChest, getItems, getMonsters } from "./utils/factory";
 
   app.ticker.add(() => {
     ui.updateStats();
-    player.update(items, enemies, treasures, map.container);
+    player.update(items, enemies, treasures);
   });
 
 

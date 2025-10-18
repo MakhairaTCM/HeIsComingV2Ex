@@ -37,7 +37,7 @@ export default class Player {
     this.position.y += direction.y;
   }
 
-  update(items, enemies, chests, container) {
+  update(items, enemies, chests) {
     const collidedItem = detectCollision(this, items);
     if (collidedItem) {
         this.pickupItem(collidedItem);
